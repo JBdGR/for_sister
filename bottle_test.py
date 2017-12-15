@@ -12,6 +12,7 @@ Base = declarative_base()
 class News(Base):
     '''
     Класс для работы с базой данных
+    Тянуть класс из dbc.py не будем, т.к. это финальная верия - просто пример из методички
     '''
     __tablename__ = "news"  # Имя таблица
     id = Column(Integer, primary_key=True)  # id - уникальный номер записи, является pk
