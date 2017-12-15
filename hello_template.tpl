@@ -1,1 +1,6 @@
+<html>
+<head></head>
+<body>
 <b>Hello {{name}}</b>
+</body>
+</html>
