@@ -60,9 +60,9 @@ def get_news(p_name):
             author = None
 
         try:  # Пробуем получить оценки
-            points = td_sub[i].find('span', {'class': 'score'}).string.split()[0]
+            points = int(td_sub[i].find('span', {'class': 'score'}).string.split()[0])
         except:
-            points = None
+            points = 0
 
         try:  # Здесь немного тяжело читаемая хрень. Комментарии лежат в тэге a и у них нет ни класса, нифига.
               # Через регулярку их тоже не отловить, т.к. выше есть a c herf'ом, начинающимся также
@@ -70,16 +70,17 @@ def get_news(p_name):
             comments = td_sub[i].findAll('a')
             z = comments[len(comments)-1].string.split()
             if z[1][:7] == 'comment':
-                comments = z[0]
+                comments = int(z[0])
             else:
-                comments = None
+                comments = 0
         except:
-            comments = None
+            comments = 0
 
         news_list.append({'author': author, 'comments': comments, 'points': points, 'title': tit, 'url': url})
     return news_list
 
 
-news_list = get_news('https://news.ycombinator.com/')
-for i in news_list:
-    print(i)
+#news_list = get_news('https://news.ycombinator.com/')
+#for i in news_list:
+#    print(i)
+
