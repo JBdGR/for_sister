@@ -25,10 +25,14 @@ Base = declarative_base()
 #    points = Column(Integer)  # Количество лайков. Опять же - фиг его знает зачем
 #    label = Column(String)  # Наша метка - понравилось/пофиг/не понравилось.
 
-
-engine = create_engine("sqlite:///news.db")  # Пробуем открыть файл. В отличии от db_test - если файл есть, мы его
+try:
+    engine = create_engine("sqlite:///news.db")  # Пробуем открыть файл. В отличии от db_test - если файл есть, мы его
                                              # не удаляем. По хорошему нужно exception, т.к. если файл не открыть
                                              # (например, открыт другой софтиной) - будем падать
+except:
+    print('Something wrong with dbase file: news.db')
+    exit()
+
 Base.metadata.create_all(bind=engine)
 session = sessionmaker(bind=engine)
 s = session()
