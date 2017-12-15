@@ -60,8 +60,11 @@ def add_label():
     label = request.query.label  # Из GET-а получаем значение label
     id = request.query.id  # Из GET-а получаем значение id
     # Обновляем поле label для записи, у которой id соответсвет полученному.
-    s.query(dbc.News).filter(dbc.News.id == int(id)).update({dbc.News.label: label}, synchronize_session=False)
-    s.commit()
+    try:
+        s.query(dbc.News).filter(dbc.News.id == int(id)).update({dbc.News.label: label}, synchronize_session=False)
+        s.commit()
+    except:
+        print('Update field - Something wrong')
     redirect('/')
 
 
