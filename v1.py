@@ -30,7 +30,7 @@ try:
                                              # не удаляем. По хорошему нужно exception, т.к. если файл не открыть
                                              # (например, открыт другой софтиной) - будем падать
 except:
-    print('Something wrong with dbase file: news.db')
+    print('Something wrong with dbase file: news.db!')
     exit()
 
 Base.metadata.create_all(bind=engine)
