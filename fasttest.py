@@ -1,6 +1,5 @@
 import requests  # Импорт модуля для работы с requets'ами
 import bs4  # Импорт модуля для работы с парсингом
-import re  # Для работы с регулярными выражениями
 
 # from bs4 import BeautifulSoup - можно заменить на импорт через from, тогда
 # сможешь работать по короткому имени BeautifulSoup
