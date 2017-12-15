@@ -12,6 +12,7 @@ Base = declarative_base()
 class News(Base):
     '''
     Класс для работы базой данных через ORM. Вообще, нужно выкинуть его в отдельный файл.
+    Из dbc.py тянуть не будем, т.к. это финальная версия примера
     '''
     __tablename__ = "news"  # Имя таблица
     id = Column(Integer, primary_key=True)  # id - уникальный номер записи, является pk
