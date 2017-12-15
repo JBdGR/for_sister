@@ -78,9 +78,3 @@ def get_news(p_name):
 
         news_list.append({'author': author, 'comments': comments, 'points': points, 'title': tit, 'url': url})
     return news_list
-
-
-#news_list = get_news('https://news.ycombinator.com/')
-#for i in news_list:
-#    print(i)
-

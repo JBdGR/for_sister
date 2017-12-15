@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 </head>
 <body>
-<a href="/update_news">I Wanna more HACKER NEWS!</a>
+<a href="/update_news">I Wanna more HACKER NEWS!</a><br><a href="/">Show new article</a><br>
 <table border=1>
     <tr>
         <th>Title</th>
