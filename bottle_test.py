@@ -1,15 +1,15 @@
+from bottle import route, run, template
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, String, Integer
-import fasttest
-import os
 
 Base = declarative_base()
 
+
 class News(Base):
     __tablename__ = "news"
-    id = Column(Integer, primary_key = True)
+    id = Column(Integer, primary_key=True)
     title = Column(String)
     author = Column(String)
     url = Column(String)
@@ -18,23 +18,26 @@ class News(Base):
     label = Column(String)
 
 
-if os.path.exists("test.db"):
-    os.remove("test.db")
-
-engine = create_engine("sqlite:///test.db")
+engine = create_engine("sqlite:///news.db")
 Base.metadata.create_all(bind=engine)
 
 
 session = sessionmaker(bind=engine)
-s = session()
 
-news_list = fasttest.get_news('https://news.ycombinator.com/')
-for i in news_list:
-    print(i)
 
-    news = News(title=i['title'], author=i['author'], url=i['url'],
-                comments=i['comments'], points=i['points'])
-    s.add(news)
-s.commit()
+@route('/')
+@route('/hello/<name>')
+def index(name="Stranger"):
+    return template('hello_template', name=name)
+
+
+@route('/news')
+def news_list():
+    s = session()
+    rows = s.query(News).filter(News.label==None).all()
+    return template('news_template', rows=rows)
+
+
+run(host='localhost', port=8080)
 
 session.close_all()
